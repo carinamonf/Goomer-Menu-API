@@ -1,20 +1,20 @@
 import { db } from '../../database/db';
 
 export type MenuItem = {
-  id: string;
-  nome: string;
-  categoria: string;
-  preco_original: number;
-  preco_final: number;
-  descricao_promocao: string | null;
-  promocao_ativa: boolean;
+    id: string;
+    nome: string;
+    categoria: string;
+    preco_original: number;
+    preco_final: number;
+    descricao_promocao: string | null;
+    promocao_ativa: boolean;
 }
 
 export class MenuRepository {
 
-  async getActiveMenu(): Promise<MenuItem[]> {
+    async getActiveMenu(): Promise<MenuItem[]> {
 
-    const query = `
+        const query = `
       SELECT
           p.id,
           p.nome,
@@ -43,10 +43,12 @@ export class MenuRepository {
       WHERE
           p.visivel = true
       ORDER BY
-          p.categoria ASC, p.nome ASC;
+          p.categoria ASC,
+          p.posicao ASC,
+          p.nome ASC;
     `;
 
-    const result = await db.raw(query);
-    return result.rows;
-  }
+        const result = await db.raw(query);
+        return result.rows;
+    }
 }

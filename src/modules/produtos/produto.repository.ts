@@ -12,11 +12,12 @@ export type Produto = {
   preco: number;
   categoria: string;
   visivel: boolean;
+  posicao: number;
   created_at: string;
   updated_at: string;
 }
 
-export type ProdutoUpdateInput = Partial<ProdutoInput & { visivel: boolean }>;
+export type ProdutoUpdateInput = Partial<ProdutoInput & { visivel: boolean; posicao: number }>;
 
 export class ProdutoRepository {
 
@@ -47,7 +48,7 @@ export class ProdutoRepository {
   }
 
   async update(id: string, data: ProdutoUpdateInput): Promise<Produto | undefined> {
-    const { nome, preco, categoria, visivel } = data;
+    const { nome, preco, categoria, visivel, posicao } = data;
 
     const query = `
       UPDATE produtos
@@ -56,12 +57,13 @@ export class ProdutoRepository {
         preco = COALESCE(?, preco),
         categoria = COALESCE(?, categoria),
         visivel = COALESCE(?, visivel),
+        posicao = COALESCE(?, posicao),
         updated_at = CURRENT_TIMESTAMP
       WHERE id = ?
       RETURNING *;
     `;
 
-    const params = [nome, preco, categoria, visivel, id];
+    const params = [nome, preco, categoria, visivel, posicao, id];
 
     const result = await db.raw(query, params);
     return result.rows[0];

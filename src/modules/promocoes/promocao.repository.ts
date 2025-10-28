@@ -28,7 +28,7 @@ export class PromocaoRepository {
     const { descricao, preco_promocional, dias_ativos, tempo_inicio, tempo_fim } = data;
 
     const query = `
-      INSERT INTO promotions 
+      INSERT INTO promocoes
         (produto_id, descricao, preco_promocional, dias_ativos, tempo_inicio, tempo_fim)
       VALUES (?, ?, ?, ?, ?, ?)
       RETURNING *;
@@ -49,7 +49,7 @@ export class PromocaoRepository {
 
   async findAllByProduto(produtoId: string): Promise<Promocao[]> {
     const query = `
-      SELECT * FROM promotions 
+      SELECT * FROM promocoes
       WHERE produto_id = ? 
       ORDER BY tempo_inicio ASC;
     `;
@@ -80,11 +80,11 @@ export class PromocaoRepository {
     `;
 
     const params = [
-      descricao, 
-      preco_promocional, 
-      dias_ativos, 
-      tempo_inicio, 
-      tempo_fim, 
+      descricao ?? null, 
+      preco_promocional ?? null, 
+      dias_ativos ?? null, 
+      tempo_inicio ?? null, 
+      tempo_fim ?? null, 
       id
     ];
 

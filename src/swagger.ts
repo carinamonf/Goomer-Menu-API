@@ -10,7 +10,7 @@ const options: swaggerJSDoc.Options = {
     },
     servers: [
       {
-        url: `http://localhost:3333`,
+        url: `http://localhost:3333/api`,
         description: 'Servidor de Desenvolvimento',
       },
     ],
@@ -78,6 +78,7 @@ const options: swaggerJSDoc.Options = {
           },
           example: {
             preco: 1800,
+            visivel: false,
             posicao: 1
           }
         },

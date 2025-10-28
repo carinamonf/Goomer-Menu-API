@@ -3,7 +3,7 @@ import * as yup from 'yup';
 const timeRegex = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
 
 const is15MinuteInterval = (value: string | undefined): boolean => {
-    if (!value) return false;
+    if (!value) return true;
     const parts = value.split(':');
     if (parts.length < 2 || !parts[1]) return false;
     const minutes = parseInt(parts[1], 10);

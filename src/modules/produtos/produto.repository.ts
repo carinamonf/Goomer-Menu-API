@@ -63,7 +63,14 @@ export class ProdutoRepository {
       RETURNING *;
     `;
 
-    const params = [nome, preco, categoria, visivel, posicao, id];
+    const params = [
+      nome ?? null, 
+      preco ?? null, 
+      categoria ?? null, 
+      visivel ?? null, 
+      posicao ?? null, 
+      id
+    ];
 
     const result = await db.raw(query, params);
     return result.rows[0];

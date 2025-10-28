@@ -11,7 +11,7 @@ const is15MinuteInterval = (value: string | undefined): boolean => {
     return minutes % 15 === 0;
 };
 
-export const createPromotionSchema = yup.object().shape({
+export const createPromocaoSchema = yup.object().shape({
     descricao: yup.string()
         .required('A descrição é obrigatória.'),
 
@@ -54,7 +54,7 @@ export const createPromotionSchema = yup.object().shape({
         }),
 });
 
-export const updatePromotionSchema = yup.object().shape({
+export const updatePromocaoSchema = yup.object().shape({
     descricao: yup.string(),
 
     preco_promocional: yup.number()

@@ -1,9 +1,14 @@
 import express = require("express");
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./swagger";
 import { produtoRoutes } from "./modules/produtos/produto.routes";
 import { promocaoRoutes } from "./modules/promocoes/promocao.routes";
 import { menuRoutes } from "./modules/menu/menu.routes";
 
 const app = express();
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 app.use(express.json());
 

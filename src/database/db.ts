@@ -1,4 +1,6 @@
-import knex from 'knex';
-import config from '../../knexfile';
+const knex = require('knex') as typeof import('knex');
+import type { Knex } from 'knex';
 
-export const db = knex(config);
+const config = require('../../knexfile');
+
+export const db = knex(config as Knex.Config);
